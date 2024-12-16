@@ -18,4 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    // Add click handler for profile image
+    document.getElementById('homeLink').addEventListener('click', () => {
+        document.getElementById('home').scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
 });
