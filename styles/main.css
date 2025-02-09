@@ -113,8 +113,8 @@
   /* Grid container that auto-fits columns based on available width */
   .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
     padding: 1rem 0;
   }
   
@@ -129,6 +129,7 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
     color: inherit;
+    padding: 1rem; /* adjust as needed for a larger appearance */
   }
   
   .project-card:hover {
@@ -238,5 +239,8 @@
     nav ul li a {
       text-align: center;
     }
+
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
   }
-  
