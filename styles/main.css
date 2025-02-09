@@ -244,3 +244,17 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* Larger screens */
+  @media screen and (min-width: 769px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        /* ...existing styling (width, padding, border) remains... */
+    }
+    .content {
+        margin-left: calc(180px + 30px); /* 180px width + extra space for sidebar padding */
+    }
+  }
