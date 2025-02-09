@@ -24,7 +24,7 @@
     font-family: var(--font-family);
     background: var(--background-color);
     color: var(--text-color);
-    /* Use clamp for responsive font sizes */
+    /* Responsive font sizing */
     font-size: clamp(14px, 1vw + 1rem, 18px);
     line-height: 1.6;
   }
@@ -38,11 +38,11 @@
     min-height: 100vh;
   }
   
-  /* Sidebar styling */
+  /* Sidebar: Reduced width and padding for less real estate */
   .sidebar {
-    flex: 0 0 250px;
+    flex: 0 0 180px;  /* Reduced from 250px */
     background: var(--background-color);
-    padding: 20px;
+    padding: 15px;    /* Slightly reduced padding */
     border-right: 2px solid var(--primary-color);
   }
   
@@ -83,8 +83,7 @@
   .content {
     flex: 1;
     padding: 20px;
-    /* Prevent overflow issues */
-    overflow: hidden;
+    overflow: hidden; /* Prevent overflow issues */
   }
   
   h2 {
@@ -95,10 +94,23 @@
   }
   
   /* ============================= */
+  /*      PROFILE IMAGE STYLE      */
+  /* ============================= */
+  .profile-image {
+    display: block;
+    max-width: 120px;  /* Reduced from 200px */
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin: 1rem auto;
+    border: 3px solid #ccc;
+    cursor: pointer;
+  }
+  
+  /* ============================= */
   /*        PROJECT CARDS          */
   /* ============================= */
-  
-  /* Grid container auto-fits columns based on available width */
+  /* Grid container that auto-fits columns based on available width */
   .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -136,7 +148,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* A subtle divider between image and content */
     border-bottom: 1px solid var(--primary-color);
   }
   
@@ -146,11 +157,9 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    /* Ensure long words wrap */
-    word-break: break-word;
+    word-break: break-word;  /* Ensure long words wrap */
   }
   
-  /* Headline style */
   .project-card h3 {
     font-size: 1.25rem;
     margin: 0;
@@ -159,7 +168,6 @@
     overflow-wrap: break-word;
   }
   
-  /* Paragraph style */
   .project-card p {
     font-size: 1rem;
     margin: 0;
@@ -183,7 +191,6 @@
       width: 100%;
       border-right: none;
       border-bottom: 2px solid var(--primary-color);
-      /* Arrange sidebar items horizontally where possible */
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -217,10 +224,6 @@
   @media screen and (max-width: 480px) {
     body {
       font-size: clamp(12px, 1vw + 0.75rem, 16px);
-    }
-    
-    .profile-image {
-      max-width: 150px;
     }
     
     nav ul {
