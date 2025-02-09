@@ -1,132 +1,239 @@
-/* Retro-style CSS */
-body {
+/* ============================= */
+/*        CSS VARIABLES          */
+/* ============================= */
+:root {
+    --primary-color: #808080;
+    --accent-color: #d0d0d0;
+    --background-color: #f2f2f2;
+    --text-color: #222222;
+    --font-family: "Courier New", Courier, monospace;
+  }
+  
+  /* ============================= */
+  /*         RESET & GLOBAL        */
+  /* ============================= */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  body {
     margin: 0;
     padding: 0;
-    font-family: "Courier New", Courier, monospace;
-    background: #f2f2f2; /* softer off-white */
-    color: #222222;      /* darker text */
-    font-size: 16px;     /* improved readability */
-    line-height: 1.6;    /* increased line height */
-}
-
-.container {
+    font-family: var(--font-family);
+    background: var(--background-color);
+    color: var(--text-color);
+    /* Use clamp for responsive font sizes */
+    font-size: clamp(14px, 1vw + 1rem, 18px);
+    line-height: 1.6;
+  }
+  
+  /* ============================= */
+  /*           LAYOUT              */
+  /* ============================= */
+  .container {
     display: flex;
+    flex-wrap: wrap;
     min-height: 100vh;
-}
-
-.sidebar {
-    width: 250px;
-    background: #f2f2f2; /* changed from #000055 */
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    flex: 0 0 250px;
+    background: var(--background-color);
     padding: 20px;
-    border-right: 2px solid #808080; /* changed from #00ff00 */
-}
-
-.logo h1 {
-    color: #808080; /* changed from #00ff00 */
-    font-size: 1.5em;
+    border-right: 2px solid var(--primary-color);
+  }
+  
+  .logo h1 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
     text-align: center;
     text-transform: uppercase;
-}
-
-nav ul {
+  }
+  
+  /* Navigation styling */
+  nav ul {
     list-style: none;
+    margin: 0;
     padding: 0;
-}
-
-nav ul li {
+  }
+  
+  nav ul li {
     margin: 10px 0;
-}
-
-nav ul li a {
-    color: #808080; /* changed from #00ff00 */
+  }
+  
+  nav ul li a {
+    color: var(--primary-color);
     text-decoration: none;
     display: block;
-    padding: 8px;      /* slightly more padding */
-    border: 1px solid #808080;
-}
-
-nav ul li a:hover {
-    background: #d0d0d0; /* more subtle hover background */
-    color: #222222;      /* contrast change */
-}
-
-.content {
-    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  
+  nav ul li a:hover {
+    background: var(--accent-color);
+    color: var(--text-color);
+  }
+  
+  /* Main content area */
+  .content {
+    flex: 1;
     padding: 20px;
-}
-
-h2 {
-    color: #808080; /* changed from #00ff00 */
-    border-bottom: 1px solid #808080; /* changed from #00ff00 */
-}
-
-.profile-image {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    border-radius: 50%;
-    margin: 1rem auto;
-    display: block;
-    border: 3px solid #ccc; /* changed from #333 */
-    cursor: pointer;
-}
-
-.project-grid {
+    /* Prevent overflow issues */
+    overflow: hidden;
+  }
+  
+  h2 {
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 5px;
+    margin-bottom: 1rem;
+  }
+  
+  /* ============================= */
+  /*        PROJECT CARDS          */
+  /* ============================= */
+  
+  /* Grid container auto-fits columns based on available width */
+  .project-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     padding: 1rem 0;
-}
-
-.project-card {
+  }
+  
+  /* Each project card is a clickable flex container */
+  .project-card {
     display: flex;
-    background: #f2f2f2; /* changed from #000055 */
-    border: 1px solid #808080; /* changed from #00ff00 */
-    transition: transform 0.2s;
-    height: 175px; /* Fixed height */
+    flex-direction: column;
+    background: var(--background-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
     color: inherit;
-}
-
-.project-card:hover {
+  }
+  
+  .project-card:hover {
     transform: translateX(5px);
-    box-shadow: -5px 0 15px rgba(128, 128, 128, 0.2); /* changed from rgba(0, 255, 0, 0.2) */
-    cursor: pointer;
-}
-
-.project-card .image-container {
-    flex: 0 0 175px;
-    height: 175px;
+    box-shadow: -5px 0 15px rgba(128, 128, 128, 0.2);
+  }
+  
+  /* Image container uses aspect-ratio to maintain consistent proportions */
+  .project-card .image-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
     position: relative;
-}
-
-.project-card img {
-    position: absolute;
+  }
+  
+  .project-card .image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-right: 1px solid #808080; /* changed from #00ff00 */
-}
-
-.project-card .card-content {
-    flex: 1;
+    /* A subtle divider between image and content */
+    border-bottom: 1px solid var(--primary-color);
+  }
+  
+  /* Card content area */
+  .project-card .card-content {
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 0.5rem;
-}
-
-.project-card h3 {
-    font-size: 1em;
+    /* Ensure long words wrap */
+    word-break: break-word;
+  }
+  
+  /* Headline style */
+  .project-card h3 {
+    font-size: 1.25rem;
     margin: 0;
     line-height: 1.2;
-    color: #808080; /* changed from #00ff00 */
-}
-
-.project-card p {
-    font-size: 0.9em;
+    color: var(--primary-color);
+    overflow-wrap: break-word;
+  }
+  
+  /* Paragraph style */
+  .project-card p {
+    font-size: 1rem;
     margin: 0;
     line-height: 1.4;
+    overflow-wrap: break-word;
     flex-grow: 1;
-}
+  }
+  
+  /* ============================= */
+  /*       RESPONSIVE STYLES       */
+  /* ============================= */
+  
+  /* Tablets & smaller screens */
+  @media screen and (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    
+    .sidebar {
+      flex: 0 0 auto;
+      width: 100%;
+      border-right: none;
+      border-bottom: 2px solid var(--primary-color);
+      /* Arrange sidebar items horizontally where possible */
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .logo {
+      flex: 1 1 100%;
+      text-align: center;
+    }
+    
+    nav ul {
+      flex: 1 1 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    nav ul li {
+      margin: 5px;
+    }
+    
+    .content {
+      padding: 10px;
+    }
+  }
+  
+  /* Mobile phones */
+  @media screen and (max-width: 480px) {
+    body {
+      font-size: clamp(12px, 1vw + 0.75rem, 16px);
+    }
+    
+    .profile-image {
+      max-width: 150px;
+    }
+    
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    nav ul li {
+      width: 100%;
+    }
+    
+    nav ul li a {
+      text-align: center;
+    }
+  }
+  
