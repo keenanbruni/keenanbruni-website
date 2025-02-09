@@ -4,9 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const sectionId = link.getAttribute('href').substring(1);
-            // Future section handling code will go here
+            const href = link.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const sectionId = href.substring(1);
+                // Future section handling code will go here
+            }
+            // External links will navigate normally.
         });
     });
 
